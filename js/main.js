@@ -33,15 +33,20 @@ const getDataCharacters = async () => {
 		const data = await dataFetching.json();
 
 		data.results.forEach((character) => {
-			const characterImage = document.createElement("img");
-			const characterName = document.createElement("h2");
+			const card = document.createElement('div');
+			card.classList.add('card');
 
-			characterImage.src = character.image;
-			characterName.innerText = character.name;
-			characterName.style.color = "white";
+			//// Para añadir espacio entre las tarjetas
+			// card.style.marginBottom = '3rem';
+			
+			card.innerHTML = `
+				<img src="${character.image}" class="card-img-top" alt="${character.name}">
+				<div class="card-body">
+					<h5 class="card-title">${character.name}</h5>
+				</div>
+			`;
 
-			characters.appendChild(characterImage);
-			characters.appendChild(characterName);
+			characters.appendChild(card);
 		});
 	} catch (error) {
 		console.log(error);
